@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.myapplication.R
+import com.example.myapplication.adapter.AdapterKamar
 import com.example.myapplication.adapter.AdapterSlider
+import com.example.myapplication.model.Kamar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +30,8 @@ class HomeFragment : Fragment() {
 
     lateinit var vpSlider: ViewPager
 
+    lateinit var rvKamar: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,6 +47,7 @@ class HomeFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
         vpSlider = view.findViewById(R.id.vp_slider)
+        rvKamar = view.findViewById(R.id.rv_kamar)
 
         val arrSlider = ArrayList<Int>()
         arrSlider.add(R.drawable.slider1)
@@ -49,7 +56,52 @@ class HomeFragment : Fragment() {
 
         val adapterSlider= AdapterSlider(arrSlider, activity)
         vpSlider.adapter = adapterSlider
+
+        val layoutManager = LinearLayoutManager(activity)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        rvKamar.adapter = AdapterKamar(arrKamar)
+        rvKamar.layoutManager = layoutManager
+
         return view
+    }
+
+    val arrKamar: ArrayList<Kamar>get() {
+        var arr = ArrayList<Kamar>()
+        val k1 = Kamar()
+        val k2 = Kamar()
+        val k3 = Kamar()
+        k1.jenis_kamar = "Deluxe"
+        k1.tipe_tempat_tidur = "King"
+        k1.tarif_awal = "200000"
+        k1.ukuran_kamar= "4 X 10"
+        k1.kapasitas_kamar= "2"
+        k1.rincian_kamar= "Free Wifi"
+        k1.detail_kamar= "Water Heater"
+        k1.gambar = R.drawable.slider1
+
+        k2.jenis_kamar = "Deluxe"
+        k2.tipe_tempat_tidur = "King"
+        k2.tarif_awal = "200000"
+        k2.ukuran_kamar= "4 X 10"
+        k2.kapasitas_kamar= "2"
+        k2.rincian_kamar= "Free Wifi"
+        k2.detail_kamar= "Water Heater"
+        k2.gambar = R.drawable.slider1
+
+        k3.jenis_kamar = "Deluxe"
+        k3.tipe_tempat_tidur = "King"
+        k3.tarif_awal = "200000"
+        k3.ukuran_kamar= "4 X 10"
+        k3.kapasitas_kamar= "2"
+        k3.rincian_kamar= "Free Wifi"
+        k3.detail_kamar= "Water Heater"
+        k3.gambar = R.drawable.slider1
+
+        arr.add(k1)
+        arr.add(k2)
+        arr.add(k3)
+        return arr
     }
 
     companion object {
